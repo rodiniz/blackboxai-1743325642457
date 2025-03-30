@@ -1,0 +1,29 @@
+<div class="space-y-6">
+  <div class="bg-gray-800 p-4 rounded-lg">
+    <h2 class="text-xl font-semibold mb-4">Participants</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div *ngFor="let p of participants" class="bg-gray-700 p-4 rounded-lg">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-medium">{{ p.name }}</span>
+          <span class="text-sm text-gray-400">Volume: {{ p.volume }}%</span>
+        </div>
+        <input type="range" min="0" max="100" [(ngModel)]="p.volume" 
+               (input)="onVolumeChange(p.id, p.volume)"
+               class="w-full accent-purple-500">
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-800 p-4 rounded-lg">
+    <h2 class="text-xl font-semibold mb-4">Recording Controls</h2>
+    <button (click)="toggleRecording()" 
+            [class.bg-red-600]="isRecording"
+            [class.bg-purple-600]="!isRecording"
+            class="hover:opacity-90 px-4 py-2 rounded-md text-white">
+      {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
+    </button>
+    <div *ngIf="isRecording" class="mt-2 text-purple-400">
+      <i class="fas fa-circle animate-pulse mr-2"></i> Recording in progress...
+    </div>
+  </div>
+</div>
