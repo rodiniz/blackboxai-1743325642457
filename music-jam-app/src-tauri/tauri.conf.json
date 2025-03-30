@@ -1,0 +1,31 @@
+{
+  "build": {
+    "distDir": "../dist/music-jam-frontend",
+    "devPath": "http://localhost:4200",
+    "beforeDevCommand": "ng serve",
+    "beforeBuildCommand": "ng build"
+  },
+  "package": {
+    "productName": "Music Jam App",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "bundle": {
+      "identifier": "com.example.musicjam"
+    },
+    "allowlist": {
+      "all": true,
+      "fs": {
+        "scope": ["$AUDIO/*"]
+      }
+    },
+    "windows": [
+      {
+        "title": "Music Jam",
+        "width": 900,
+        "height": 600,
+        "resizable": true
+      }
+    ]
+  }
+}
