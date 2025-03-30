@@ -1,0 +1,38 @@
+<div class="space-y-6 max-w-md mx-auto">
+  <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-purple-400 mb-6">Audio Settings</h2>
+    
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium mb-2">Input Device</label>
+        <select [(ngModel)]="selectedInput" class="w-full bg-gray-700 border border-gray-600 rounded-md p-2">
+          <option value="">Default Input</option>
+          <option *ngFor="let device of audioDevices" 
+                  [value]="device.deviceId"
+                  *ngIf="device.kind === 'audioinput'">
+            {{ device.label || 'Microphone' }}
+          </option>
+        </select>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium mb-2">Output Device</label>
+        <select [(ngModel)]="selectedOutput" class="w-full bg-gray-700 border border-gray-600 rounded-md p-2">
+          <option value="">Default Output</option>
+          <option *ngFor="let device of audioDevices"
+                  [value]="device.deviceId"
+                  *ngIf="device.kind === 'audiooutput'">
+            {{ device.label || 'Speakers' }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <button (click)="saveSettings()" 
+              class="w-full bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-md">
+        Save Settings
+      </button>
+    </div>
+  </div>
+</div>
